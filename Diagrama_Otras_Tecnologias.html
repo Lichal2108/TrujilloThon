@@ -1,0 +1,196 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<title>Radar climático Caja Trujillo · tecnologías de fácil acceso</title>
+<style>
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:Inter,'Helvetica Neue',Arial,sans-serif;background:#fff;color:#232F3E}
+#c{position:relative;width:2000px;height:1190px}
+.g{position:absolute;border:1.5px solid;border-radius:10px}
+.gt{position:absolute;left:14px;top:9px;font-size:15px;font-weight:600;letter-spacing:.1px}
+.card{position:absolute;background:#fff;border:1.5px solid;border-radius:10px;padding:11px 12px 9px;box-shadow:0 1px 0 rgba(0,0,0,.04)}
+.card b{display:block;font-size:14px;margin-bottom:4px}
+.card span{display:block;font-size:12px;line-height:1.35;color:#454F5B}
+.card i{display:block;font-style:normal;margin-top:6px;font-size:11.5px;font-weight:600;color:#147EBA}
+.lbl{position:absolute;font-size:11.5px;color:#454F5B;background:#fff;padding:1px 5px;border-radius:4px;white-space:nowrap;transform:translate(-50%,-50%)}
+.bd{position:absolute;width:26px;height:26px;border-radius:50%;background:#FF9900;color:#fff;font-weight:700;font-size:14px;display:flex;align-items:center;justify-content:center;transform:translate(-50%,-50%);border:2px solid #fff;box-shadow:0 0 0 1px #E88B00}
+svg.wires{position:absolute;left:0;top:0}
+.foot h3{font-size:15px;font-weight:700;margin-bottom:8px}
+.step{display:flex;gap:8px;font-size:12.5px;line-height:1.35}
+.step div:first-child{flex:none;width:22px;height:22px;border-radius:50%;background:#FF9900;color:#fff;font-weight:700;font-size:12px;display:flex;align-items:center;justify-content:center}
+table{border-collapse:collapse;font-size:12.5px;width:100%}
+th,td{text-align:left;padding:4px 8px;border-bottom:1px solid #E3E6EA;vertical-align:top}
+th{color:#5F6B7A;font-weight:600}
+</style>
+</head>
+<body>
+<div id="c">
+
+<div style="position:absolute;left:20px;top:14px;font-size:24px;font-weight:700">Radar climático Caja Trujillo · tecnologías de fácil acceso</div>
+<div style="position:absolute;left:20px;top:44px;font-size:13px;color:#5F6B7A">El mismo flujo de 4 agentes, construible en 2 días: software libre en un solo servidor y un único servicio de pago (el LLM)</div>
+
+<!-- grupos -->
+<div class="g" style="left:20px;top:80px;width:280px;height:330px;border-color:#7D8998;background:#F7F8F9"><div class="gt" style="color:#7D8998">Fuentes climáticas públicas</div></div>
+<div class="g" style="left:20px;top:440px;width:280px;height:260px;border-color:#D86613;background:#FFF6EC"><div class="gt" style="color:#D86613">Caja Trujillo</div></div>
+<div class="g" style="left:330px;top:80px;width:1290px;height:720px;border-color:#232F3E;border-width:2px;border-style:dashed;background:#fff"></div>
+<div style="position:absolute;left:346px;top:70px;font-size:14px;font-weight:700;background:#232F3E;color:#fff;padding:2px 10px;border-radius:4px">Un servidor · Docker Compose</div>
+<div style="position:absolute;left:580px;top:70px;font-size:13px;color:#147EBA;border:1.5px dashed #147EBA;padding:1px 8px;border-radius:4px;background:#fff">laptop en la demo · nube privada de la Caja en el piloto</div>
+<div class="g" style="left:350px;top:120px;width:1250px;height:415px;border-color:#C7131F;background:#FDF0F0"><div class="gt" style="color:#C7131F">Backend · Python (FastAPI + LangGraph)</div></div>
+<div class="g" style="left:1650px;top:80px;width:330px;height:150px;border-color:#8C4FFF;background:#F5F0FF"><div class="gt" style="color:#8C4FFF">Servicio externo</div></div>
+<div class="g" style="left:1650px;top:260px;width:330px;height:310px;border-color:#7D8998;background:#F7F8F9"><div class="gt" style="color:#7D8998">Usuarios: personal de la Caja</div></div>
+<div class="g" style="left:1650px;top:600px;width:330px;height:200px;border-color:#3F8624;background:#F1F8EE"><div class="gt" style="color:#3F8624">Beneficiario</div></div>
+
+<!-- fuentes -->
+<div class="card" style="left:40px;top:120px;width:240px;height:78px;border-color:#7D8998"><b>SENAMHI</b><span>Lluvia, helada, friaje, calor, viento y sequía. Dice cuándo.</span></div>
+<div class="card" style="left:40px;top:210px;width:240px;height:78px;border-color:#7D8998"><b>ENFEN</b><span>Escenarios de El Niño y La Niña para la temporada.</span></div>
+<div class="card" style="left:40px;top:300px;width:240px;height:78px;border-color:#7D8998"><b>Zonas de peligro</b><span>Inundación y huaico. SIGRID o fuentes abiertas. Dice dónde.</span></div>
+
+<!-- caja -->
+<div class="card" style="left:40px;top:480px;width:240px;height:92px;border-color:#D86613"><b>Cartera mensual</b><span>Seudonimizada, con indicador de consentimiento. En el prototipo: sintética.</span></div>
+<div class="card" style="left:40px;top:590px;width:240px;height:92px;border-color:#D86613"><b>Datos de contacto</b><span>Nombre y teléfono se quedan en los sistemas de la Caja.</span></div>
+
+<!-- backend: fila superior -->
+<div class="card" style="left:370px;top:160px;width:220px;height:78px;border-color:#147EBA"><b>Tarea programada</b><span>Revisa las fuentes cada 6 horas.</span><i>APScheduler</i></div>
+<div class="card" style="left:604px;top:160px;width:440px;height:78px;border-color:#01A88D"><b>Simulador de temporada</b><span>Impacto de toda la temporada, meses antes: El Niño y sequía.</span><i>Python · el LLM lee el comunicado del ENFEN</i></div>
+
+<!-- agentes -->
+<div class="card" style="left:370px;top:270px;width:220px;height:150px;border-color:#C7131F"><b>1. Agente Monitor</b><span>Lee las capas ya estructuradas y usa el LLM para las fuentes en texto. Decide si abre un evento.</span><i>Python · LLM (API de Claude)</i></div>
+<div class="card" style="left:604px;top:270px;width:220px;height:150px;border-color:#C7131F"><b>2. Agente Exposición</b><span>Cruce geoespacial y probabilidad de atraso mayor a 30 días, en 3 escenarios.</span><i>PostGIS · XGBoost · SHAP</i></div>
+<div class="card" style="left:838px;top:270px;width:220px;height:150px;border-color:#C7131F"><b>3. Agente Estratega</b><span>Reglas asignan producto; el LLM redacta el guion y reinterpreta ajustes.</span><i>Reglas en Python · LLM</i></div>
+<div class="card" style="left:1072px;top:270px;width:220px;height:150px;border-color:#C7131F"><b>4. Agente Orquestador</b><span>Verifica reglas y consentimiento; optimiza contactos por canal.</span><i>OR-Tools</i></div>
+<div class="card" style="left:1306px;top:270px;width:220px;height:150px;border-color:#232F3E"><b>Aprobación humana</b><span>El jefe de agencia ve el reparto de alertas por zona y sector, y aprueba o ajusta.</span><i>Pausa de LangGraph</i></div>
+
+<!-- backend: fila inferior -->
+<div style="position:absolute;left:650px;top:462px;width:500px;font-size:12px;line-height:1.4;color:#454F5B">El estado del flujo se guarda en la base: la pausa de aprobación sobrevive a un reinicio.<br>Ningún agente decide créditos; la alerta es un insumo para una persona.</div>
+<div class="card" style="left:1172px;top:445px;width:354px;height:70px;border-color:#8C4FFF"><b>API REST</b><span>Lista del asesor, aprobación, resultados.</span></div>
+
+<!-- fila de datos -->
+<div class="card" style="left:370px;top:590px;width:220px;height:150px;border-color:#01A88D"><b>Entrenamiento y validación</b><span>Fuera de línea. Aquí se mide el sesgo por zona, sector y segmento, y se recalibra cada trimestre.</span><i>XGBoost · Fairlearn</i></div>
+<div class="card" style="left:604px;top:590px;width:300px;height:150px;border-color:#3F8624"><b>Base de datos</b><span>Cartera seudonimizada, zonas de peligro, eventos, resultados, estado del flujo y bitácora de auditoría.</span><i>PostgreSQL + PostGIS</i></div>
+<div class="card" style="left:918px;top:590px;width:240px;height:150px;border-color:#3F8624"><b>Impacto financiero</b><span>Mora y provisiones por el saldo que pasaría a atraso mayor a 30 días. Aparte, pérdida de operaciones especiales (10% en 2017).</span><i>pandas · parámetros de Riesgos</i></div>
+<div class="card" style="left:1172px;top:590px;width:354px;height:150px;border-color:#8C4FFF"><b>Aplicación web</b><span>Impacto financiero y simulador para Riesgos, consola de aprobación, lista y mapa del asesor. Cada alerta muestra la fecha del dato.</span><i>React + Leaflet (o Streamlit si el equipo es solo Python)</i></div>
+
+<!-- externo y usuarios -->
+<div class="card" style="left:1670px;top:120px;width:290px;height:95px;border-color:#8C4FFF"><b>API del LLM · Claude</b><span>Único servicio de pago. Recibe textos de avisos, reglas y perfiles por segmento, nunca datos que identifiquen a un cliente.</span></div>
+<div class="card" style="left:1670px;top:300px;width:290px;height:70px;border-color:#7D8998"><b>Área de Riesgos</b><span>Define las reglas y ve el impacto en cartera.</span></div>
+<div class="card" style="left:1670px;top:385px;width:290px;height:70px;border-color:#232F3E"><b>Jefe de agencia</b><span>Aprueba o ajusta cada evento.</span></div>
+<div class="card" style="left:1670px;top:470px;width:290px;height:70px;border-color:#7D8998"><b>Asesores de negocio</b><span>Reciben su lista priorizada y registran el resultado.</span></div>
+<div class="card" style="left:1670px;top:640px;width:290px;height:140px;border-color:#3F8624"><b>Cliente microempresario</b><span>No usa la aplicación. Todo cliente expuesto recibe la alerta preventiva por visita, llamada o mensaje. Las ofertas de productos solo van a quien dio su consentimiento.</span></div>
+
+<!-- conexiones -->
+<svg class="wires" width="2000" height="1190">
+<defs>
+<marker id="mf" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0 0 L10 5 L0 10 z" fill="#232F3E"/></marker>
+<marker id="md" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0 0 L10 5 L0 10 z" fill="#3F8624"/></marker>
+<marker id="mh" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0 0 L10 5 L0 10 z" fill="#C7131F"/></marker>
+</defs>
+<g fill="none" stroke-width="2" stroke-linejoin="round">
+<!-- fuentes -> tarea programada -> Monitor -->
+<path d="M280 159 H315 M280 249 H315 M280 339 H315 M315 159 V339" stroke="#232F3E"/>
+<path d="M315 199 H365" stroke="#232F3E" marker-end="url(#mf)"/>
+<path d="M480 238 V265" stroke="#232F3E" marker-end="url(#mf)"/>
+<!-- cadena de agentes -->
+<path d="M590 345 H600" stroke="#232F3E" marker-end="url(#mf)"/>
+<path d="M824 345 H834" stroke="#232F3E" marker-end="url(#mf)"/>
+<path d="M1058 345 H1068" stroke="#232F3E" marker-end="url(#mf)"/>
+<path d="M1292 345 H1302" stroke="#C7131F" marker-end="url(#mh)"/>
+<!-- consulta al LLM -->
+<path d="M540 270 V252 H948" stroke="#3F8624" stroke-dasharray="7 5"/>
+<path d="M948 270 V252 H1065 V143 H1665" stroke="#3F8624" stroke-dasharray="7 5" marker-end="url(#md)"/>
+<!-- simulador de temporada -> Exposicion -->
+<path d="M714 238 V265" stroke="#232F3E" marker-end="url(#mf)"/>
+<!-- re-identificacion: contacto y consentimientos -> web -->
+<path d="M280 636 H322 V782 H1560 V480 H1531" stroke="#3F8624" stroke-dasharray="7 5" marker-end="url(#md)"/>
+<!-- tarea programada -> simulador (comunicado ENFEN) -->
+<path d="M590 199 H599" stroke="#232F3E" marker-end="url(#mf)"/>
+<!-- modelo entrenado -> Exposicion -->
+<path d="M480 590 V552 H620 V425" stroke="#3F8624" marker-end="url(#md)"/>
+<!-- ajuste: aprobacion -> Estratega -->
+<path d="M1330 420 V436 H948 V425" stroke="#C7131F" stroke-dasharray="7 5" marker-end="url(#mh)"/>
+<!-- backend <-> base -->
+<path d="M754 540 V585" stroke="#3F8624" marker-start="url(#md)" marker-end="url(#md)"/>
+<path d="M604 665 H595" stroke="#3F8624" marker-end="url(#md)"/>
+<path d="M904 665 H913" stroke="#3F8624" marker-end="url(#md)"/>
+<path d="M1158 665 H1167" stroke="#3F8624" marker-end="url(#md)"/>
+<!-- web -> API -> aprobacion -->
+<path d="M1349 590 V520" stroke="#232F3E" marker-end="url(#mf)"/>
+<path d="M1416 445 V425" stroke="#C7131F" marker-end="url(#mh)"/>
+<!-- cartera mensual -->
+<path d="M280 525 H345 V765 H754 V745" stroke="#3F8624" marker-end="url(#md)"/>
+<!-- usuarios -> web -->
+<path d="M1670 335 H1640 M1670 420 H1640 M1670 505 H1640 M1640 335 V665" stroke="#232F3E"/>
+<path d="M1640 665 H1531" stroke="#232F3E" marker-end="url(#mf)"/>
+<!-- asesor -> cliente -->
+<path d="M1815 540 V635" stroke="#232F3E" marker-end="url(#mf)"/>
+</g>
+</svg>
+
+<div class="lbl" style="left:1330px;top:143px">consulta al LLM, sin identificar clientes</div>
+<div class="lbl" style="left:1000px;top:782px">re-identifica en el servidor solo la cartera del asesor</div>
+<div class="bd" style="left:604px;top:160px">10</div>
+<div class="lbl" style="left:548px;top:552px">modelo entrenado</div>
+<div class="lbl" style="left:1140px;top:436px">ajusta</div>
+<div class="lbl" style="left:810px;top:562px">SQL</div>
+<div class="lbl" style="left:1385px;top:556px">REST</div>
+<div class="lbl" style="left:520px;top:765px">carga mensual</div>
+<div class="lbl" style="left:1815px;top:586px">visita, llamada o mensaje</div>
+
+<div class="bd" style="left:340px;top:199px">1</div>
+<div class="bd" style="left:345px;top:650px">2</div>
+<div class="bd" style="left:370px;top:270px">3</div>
+<div class="bd" style="left:604px;top:270px">4</div>
+<div class="bd" style="left:918px;top:590px">5</div>
+<div class="bd" style="left:1065px;top:300px">6</div>
+<div class="bd" style="left:1306px;top:270px">7</div>
+<div class="bd" style="left:1640px;top:590px">8</div>
+<div class="bd" style="left:754px;top:562px">9</div>
+
+<!-- pie -->
+<div class="foot" style="position:absolute;left:20px;top:830px;width:960px">
+<h3>Flujo E2E</h3>
+<div style="display:grid;grid-template-columns:1fr 1fr;gap:6px 24px">
+<div class="step"><div>1</div><div>Cada 6 horas se leen avisos del SENAMHI, escenarios del ENFEN y zonas de peligro.</div></div>
+<div class="step"><div>2</div><div>La cartera seudonimizada se carga al menos una vez al mes, con el indicador de consentimiento.</div></div>
+<div class="step"><div>3</div><div>El Monitor lee las capas del SENAMHI y, con el LLM, las fuentes en texto; decide si amerita abrir un evento.</div></div>
+<div class="step"><div>4</div><div>Exposición cruza aviso, zona de peligro y cartera, y calcula la probabilidad de atraso mayor a 30 días.</div></div>
+<div class="step"><div>5</div><div>Se estima el impacto financiero por zona, sector y segmento: atraso, mora, provisiones y pérdida esperada.</div></div>
+<div class="step"><div>6</div><div>El Estratega asigna productos y redacta el guion; el Orquestador verifica reglas y consentimiento y optimiza los contactos.</div></div>
+<div class="step"><div>7</div><div>El jefe de agencia revisa el reparto de alertas y aprueba; si ajusta, el evento vuelve al Estratega.</div></div>
+<div class="step"><div>8</div><div>El asesor contacta a todo cliente expuesto con la alerta; las ofertas solo van a quien dio su consentimiento.</div></div>
+<div class="step"><div>9</div><div>El resultado vuelve a la base; el modelo se recalibra cada trimestre con validación y revisión de sesgos.</div></div>
+<div class="step"><div>10</div><div>Aparte de los avisos, el simulador de temporada estima meses antes el impacto de El Niño o de una sequía.</div></div>
+</div>
+</div>
+
+<div class="foot" style="position:absolute;left:1020px;top:830px;width:600px">
+<h3>Equivalencia con la versión AWS</h3>
+<table>
+<tr><th>En AWS (v2)</th><th>Aquí</th><th>Costo</th></tr>
+<tr><td>Step Functions, EventBridge</td><td>LangGraph, APScheduler</td><td>Libre</td></tr>
+<tr><td>Bedrock</td><td>API de Claude directa</td><td>Pago por uso</td></tr>
+<tr><td>SageMaker, Clarify</td><td>XGBoost, SHAP, Fairlearn</td><td>Libre</td></tr>
+<tr><td>Aurora, S3</td><td>PostgreSQL + PostGIS en contenedor</td><td>Libre</td></tr>
+<tr><td>QuickSight</td><td>Gráficos en la misma web</td><td>Libre</td></tr>
+<tr><td>Amplify, Cognito, API Gateway, WAF</td><td>FastAPI + React con roles simples</td><td>Libre</td></tr>
+<tr><td>SNS, End User Messaging</td><td>Panel de mensajes (simulado en la demo)</td><td>Libre</td></tr>
+<tr><td>KMS, CloudTrail, GuardDuty</td><td>Bitácora en la base; seguridad de la red de la Caja</td><td>Ya existe</td></tr>
+</table>
+</div>
+
+<div class="foot" style="position:absolute;left:1650px;top:830px;width:330px;font-size:12.5px;line-height:1.45">
+<h3>Para quién es</h3>
+<div style="margin-bottom:6px"><b>Quien la usa y la paga:</b> Caja Trujillo (Riesgos, jefes de agencia, asesores).</div>
+<div style="margin-bottom:14px"><b>Quien se beneficia:</b> el microempresario, sin instalar nada.</div>
+<h3>Se agrega en el piloto</h3>
+<div style="margin-bottom:14px">Acceso con el directorio de la Caja, bitácora hacia su sistema de seguridad, respaldo y modo sin LLM.</div>
+<h3>Leyenda</h3>
+<div style="display:flex;align-items:center;gap:8px;line-height:1.9"><svg width="44" height="10"><line x1="0" y1="5" x2="44" y2="5" stroke="#232F3E" stroke-width="2"/></svg>Flujo de control</div>
+<div style="display:flex;align-items:center;gap:8px;line-height:1.9"><svg width="44" height="10"><line x1="0" y1="5" x2="44" y2="5" stroke="#3F8624" stroke-width="2"/></svg>Datos</div>
+<div style="display:flex;align-items:center;gap:8px;line-height:1.9"><svg width="44" height="10"><line x1="0" y1="5" x2="44" y2="5" stroke="#3F8624" stroke-width="2" stroke-dasharray="7 5"/></svg>Consulta (LLM, re-identificación)</div>
+<div style="display:flex;align-items:center;gap:8px;line-height:1.9"><svg width="44" height="10"><line x1="0" y1="5" x2="44" y2="5" stroke="#C7131F" stroke-width="2"/></svg>Supervisión humana</div>
+</div>
+
+</div>
+</body>
+</html>
